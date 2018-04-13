@@ -3,7 +3,7 @@
 The Comanage Integration module collects attributes from Comanage Database by using SQL Query. 
 It is implemented as an Authentication Processing Filter for [SimpleSAMLphp](https://simplesamlphp.org).
 
-The configuration of the module is in the `authproc.sp` section in `config/config.php`.
+The configuration of the module is in the `authproc.idp` section in `config/config.php`.
 
   * [Read more about processing filters in simpleSAMLphp](simplesamlphp-authproc)
 

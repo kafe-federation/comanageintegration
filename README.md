@@ -25,7 +25,7 @@ Example:
 ```php
 // /path/to/simplesamlphp/config/config.php file
 
-'authproc.sp' => array(
+'authproc.idp' => array(
     59 => array(
         'class' => 'comanageintegration:integration',
         'db' => array(
@@ -33,7 +33,7 @@ Example:
             'user' => 'comanage_mysql_user',
             'password' => 'comanage_mysql_password'
         ),
-		'nameId' => 'urn:oid:...', // optional, default eppn
+        'nameId' => 'urn:oid:...', // optional, default eppn
     ),
 ),
 ```

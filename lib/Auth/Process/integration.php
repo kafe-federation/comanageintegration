@@ -26,7 +26,13 @@ class sspmod_comanageintegration_Auth_Process_integration extends SimpleSAML_Aut
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $db->exec("SET NAMES 'utf8'");
 
-            $spid = $state['saml:sp:State']['core:SP'];
+            foreach($state as $key => $value) {
+                SimpleSAML_Logger::error('[debug] '.$key);
+            }
+
+            //SimpleSAML_Logger::error('[debug] '.json_encode($state['core:SP']));
+            //$spid = $state['saml:sp:State']['core:SP'];
+            $spid = $state['core:SP'];
             $nameId = $attributes[$nameId][0];
 
             $ismemberof_string = "select name from cm_co_groups where status = 'A' and id = (select distinct co_group_id as GID from cm_co_group_members where co_person_id=(SELECT id FROM cm_co_people WHERE actor_identifier='".addslashes($nameId)."' AND co_person_id is NULL) and co_group_id = (select distinct co_group_id from cm_co_services where service_label = '".addslashes($spid)."' AND co_service_id is NULL));";
@@ -52,7 +58,7 @@ class sspmod_comanageintegration_Auth_Process_integration extends SimpleSAML_Aut
                 array_push($attributes['urn:oid:1.3.6.1.4.1.5923.1.5.1.1'], $row['name']);
             }
         } catch (Exception $e) {
-            SimpleSAML_Logger::error("Attribute query failed: ".$e->getMessage());
+            //SimpleSAML_Logger::error("Attribute query failed: ".$e->getMessage());
         }
     }
 }
